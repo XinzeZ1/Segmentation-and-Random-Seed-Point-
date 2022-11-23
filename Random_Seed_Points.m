@@ -25,7 +25,7 @@ Seg_img = bw2.*~(double(mask_final(:,:,tl)));
 
 %Segmentation Part
 I=Seg_img;
-[m,n]=size(I);           %图像分辨率为m*n
+[m,n]=size(I);           
 ROI=I>0;
 ROI=double(ROI);
 
@@ -34,20 +34,20 @@ ROI=double(ROI);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %Step 1: Initilization
-K=3;%K为分类数
+K=3;%
 epsilon=0.1;
 iterNum=100;
 
-Mu=zeros(K,1);            % Mu为均值向量
-Sigma=zeros(K,1);         % 方差
-PI=zeros(m,n,K);          % PI为先验分布
-Z=zeros(m,n,K);           % 后验概率
-F=zeros(m,n,K);           % 空间因子
-B=ones(m,n);              % bias field
+Mu=zeros(K,1);           
+Sigma=zeros(K,1);       
+PI=zeros(m,n,K);         
+Z=zeros(m,n,K);         
+F=zeros(m,n,K);           
+B=ones(m,n);              
 
-radius=1;                 % 矩形邻域半径
-beta=1;                 % 温度值
-h=10;                    % h用于控制空间权重因子
+radius=1;                 
+beta=1;                
+h=10;                    
 W=zeros(m,n,9);
 w=zeros(3,3);
 for i=3:m-2
@@ -61,7 +61,7 @@ for i=3:m-2
           end
     end
 end
-%计算空间权重系数W
+
 
 %basis funtions for bias field estimation
 demination = 10;
@@ -170,7 +170,7 @@ for iteration_times=1:iterNum
         Mu_old = Mu;
     end
 end
-%迭代结束
+
 [Mu_temp,Mu_IX]=sort(Mu);
 for k=1:K
     Mu_temp(Mu_IX(k))=k;
@@ -201,10 +201,10 @@ for i_iteration=1:10
     end
     c=exp(sum(U,3));
     c=c.*ROI;
-    %计算c
+    %璁＄畻c
     e=(e.*c)/(sum(sum(c))+eps);
     e=e.*ROI;
-   % 计算e
+   
 end
 Xi=zeros(K,1);
 cluster_label=img_out;
@@ -219,7 +219,7 @@ for i=2:m-1
        end
     end
 end
-%考虑独立噪声点
+
 
 img_out=img_out.*ROI;
 IM=img_out*50;   
