@@ -1,1 +1,1 @@
-# Segmentation-and-Random-Seed-Point-
+# Segmentation-and-Random-Seed-Points
